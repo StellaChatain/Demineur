@@ -12,6 +12,8 @@ public class TableauDeCases {
 	int y;
 	
 	public TableauDeCases(int lo, int la) {
+		int w = (int)(Math.random() * (lo-2)) + lo;
+		int z = (int)(Math.random() * (la-2)) + la;
 		nbDeMines = 0;
 		tab = new Case[lo][la];
 		Joueur j= new Joueur(x,y);
@@ -19,6 +21,9 @@ public class TableauDeCases {
 			for( int b=0; b<la; b++){
 				Case a = new Case();
 				tab[i][b]= a;
+				if(i==w && b==z){
+					a.setCookie(true);
+				}
 				if(i==1 && b==1){
 					a.setMine(false);
 					a.setMur(false);
