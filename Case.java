@@ -7,6 +7,7 @@ public class Case {
 	private boolean mine;
 	private boolean cachee;
 	private boolean mur;
+	private boolean cookie;
 	private String etat;
 	int nbMinesVoisines;
 	
@@ -39,7 +40,11 @@ public class Case {
 	
 	public boolean getMur(){
 		return mur;
-	}			
+	}	
+	
+	public boolean getCookie(){
+		return cookie;
+	}
 	
 	public int getNbMinesVoisines(){
 		return nbMinesVoisines;
@@ -55,6 +60,10 @@ public class Case {
 	
 	public void setMur(boolean m){
 		mur= m;
+	}
+	
+	public void setCookie(boolean c){
+		mur= c;
 	}
 			
 }
