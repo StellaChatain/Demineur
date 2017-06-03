@@ -45,8 +45,7 @@ public class Main {
 			//... 	while (!possible){
 			
 				
-				if (perdu){
-					System.out.println("Tu es tombé sur une mine! Perdu!");
+				if (labyrinthe.getPerdu()){
 					finDeManche=true;
 				}else if(labyrinthe.getGagner()){// créer le cookie dans TableauDeCases
 					finDeManche=true;
