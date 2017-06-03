@@ -46,7 +46,6 @@ public class Main {
 			
 				
 				if(labyrinthe.getGagner()){// créer le cookie dans TableauDeCases
-					System.out.println("Bravo! Vous avez gagne!");
 					finDeManche=true;
 				}
 			}
