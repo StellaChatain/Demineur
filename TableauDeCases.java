@@ -53,7 +53,7 @@ public class TableauDeCases {
 
 	
 	public void deplacer(Joueur j){
-		boolean res= false;
+		perdu= false;
 		gagner= false;
 		int n=0;
 		if(n==8){
@@ -64,8 +64,11 @@ public class TableauDeCases {
 				System.out.println("Tu ne peux pas foncer dans un mur!");
 			}else if(mine){
 					System.out.println("BRUH! TU AS PERDU! TU ES NUL!");
-					res= true;
-				}else{
+					perdu= true;
+			}else if(cookie){
+				System.out.println("Bravo! Vous avez gagne!");
+				gagner= true;
+			}else{
 					j.setX(j.getX()-1);
 					int k= calculNbMinesVoisines(j);
 					a= tab[j.getX()][j.getY()];
@@ -81,7 +84,10 @@ public class TableauDeCases {
 					boolean mine= a.getMine();
 					if(mine){
 						System.out.println("BRUH! TU AS PERDU! TU ES NUL!");
-						res= true;
+						perdu= true;
+					}else if(cookie){
+						System.out.println("Bravo! Vous avez gagne!");
+						perdu= true;	
 					}else{
 						j.setX(j.getX()+1);
 						int k= calculNbMinesVoisines(j);
@@ -99,7 +105,10 @@ public class TableauDeCases {
 					boolean mine= a.getMine();
 					if(mine){
 						System.out.println("BRUH! TU AS PERDU! TU ES NUL!");
-						res= true;
+						perdu= true;
+					}else if(cookie){
+						System.out.println("Bravo! Vous avez gagne!");
+						gagner= true;
 					}else{
 						j.setY(j.getY()-1);
 						int k= calculNbMinesVoisines(j);
@@ -117,7 +126,10 @@ public class TableauDeCases {
 					boolean mine= a.getMine();
 					if(mine){
 						System.out.println("BRUH! TU AS PERDU! TU ES NUL!");
-						res= true;
+						perdu= true;
+					}else if(cookie){
+						System.out.println("Bravo! Vous avez gagne!");
+						gagner= true;	
 					}else{
 						j.setY(j.getY()+1);
 						int k= calculNbMinesVoisines(j);
