@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class TableauDeCases {
 	
@@ -16,7 +17,7 @@ public class TableauDeCases {
 		int z = (int)(Math.random() * (la-2)) + la;
 		nbDeMines = 0;
 		tab = new Case[lo][la];
-		Joueur j= new Joueur(x,y);
+		Joueur j= new Joueur(0,0);
 		for( int i=0; i<lo; i++){
 			for( int b=0; b<la; b++){
 				Case a = new Case();
@@ -24,7 +25,7 @@ public class TableauDeCases {
 				if(i==w && b==z){
 					a.setCookie(true);
 				}
-				if(i==1 && b==1){
+				if(i==0 && b==0){
 					a.setMine(false);
 					a.setMur(false);
 				}	
@@ -52,22 +53,24 @@ public class TableauDeCases {
 	}
 
 	
-	public void deplacer(Joueur j){
+	public void deplacer(int n){
 		perdu= false;
 		gagner= false;
-		int n=0;
 		if(n==8){
 			Case a= tab[j.getX()-1][j.getY()];
 			boolean mur= a.getMur();
 			boolean mine= a.getMine();
+			boolean cookie= a.getCookie();
 			if(mur){
 				System.out.println("Tu ne peux pas foncer dans un mur!");
+				a= tab[j.getX()][j.getY()];
 			}else if(mine){
 					System.out.println("BRUH! TU AS PERDU! TU ES NUL!");
 					perdu= true;
 			}else if(cookie){
 				System.out.println("Bravo! Vous avez gagne!");
 				gagner= true;
+				a.setCachee(false);
 			}else{
 					j.setX(j.getX()-1);
 					int k= calculNbMinesVoisines(j);
@@ -78,8 +81,10 @@ public class TableauDeCases {
 			else if(n==5){
 			Case a= tab[j.getX()+1][j.getY()];
 				boolean mur= a.getMur();
+				boolean cookie= a.getCookie();
 				if(mur){
 					System.out.println("Tu ne peux pas foncer dans un mur!");
+					a= tab[j.getX()][j.getY()];
 				}else{
 					boolean mine= a.getMine();
 					if(mine){
@@ -88,6 +93,7 @@ public class TableauDeCases {
 					}else if(cookie){
 						System.out.println("Bravo! Vous avez gagne!");
 						perdu= true;	
+						a.setCachee(false);
 					}else{
 						j.setX(j.getX()+1);
 						int k= calculNbMinesVoisines(j);
@@ -99,8 +105,10 @@ public class TableauDeCases {
 		else if (n==4){
 			Case a= tab[j.getX()][j.getY()-1];
 				boolean mur= a.getMur();
+				boolean cookie= a.getCookie();
 				if(mur){
 					System.out.println("Tu ne peux pas foncer dans un mur!");
+					a= tab[j.getX()][j.getY()];
 				}else{
 					boolean mine= a.getMine();
 					if(mine){
@@ -109,6 +117,7 @@ public class TableauDeCases {
 					}else if(cookie){
 						System.out.println("Bravo! Vous avez gagne!");
 						gagner= true;
+						a.setCachee(false);
 					}else{
 						j.setY(j.getY()-1);
 						int k= calculNbMinesVoisines(j);
@@ -120,8 +129,10 @@ public class TableauDeCases {
 		else if (n==6){
 			Case a= tab[j.getX()][j.getY()+1];
 				boolean mur= a.getMur();
+				boolean cookie= a.getCookie();
 				if(mur){
 					System.out.println("Tu ne peux pas foncer dans un mur!");
+					a= tab[j.getX()][j.getY()];
 				}else{
 					boolean mine= a.getMine();
 					if(mine){
@@ -129,7 +140,8 @@ public class TableauDeCases {
 						perdu= true;
 					}else if(cookie){
 						System.out.println("Bravo! Vous avez gagne!");
-						gagner= true;	
+						gagner= true;
+						a.setCachee(false);	
 					}else{
 						j.setY(j.getY()+1);
 						int k= calculNbMinesVoisines(j);
@@ -158,8 +170,7 @@ public class TableauDeCases {
 				}	
 					
 			}	
-		}
-		else if(y== tab[x].length) {
+		}else if(y== tab[x].length) {
 			if (tab[x+1][y].getMine()){
 				res++;
 			}
@@ -168,30 +179,28 @@ public class TableauDeCases {
 				}	
 			if (tab[x+1][y-1].getMine()){
 				res++;
-			}
-		}else{
-			if (tab[x][y-1].getMine()){
-				res++;
-			}
-			if (tab[x-1][y-1].getMine()){
-				res++;
-				}	
-			if (tab[x-1][y].getMine()){
-				res++;
-			}
-			if (tab[x-1][y+1].getMine()){
-				res++;
-			}
-			if (tab[x][y+1].getMine()){
-				res++;
-			}
-		}	
-		
-		if(y==tab[x].length){
+			}else{
+				if (tab[x][y-1].getMine()){
+					res++;
+				}
+				if (tab[x-1][y-1].getMine()){
+					res++;
+					}	
+				if (tab[x-1][y].getMine()){
+					res++;
+				}
+				if (tab[x-1][y+1].getMine()){
+					res++;
+				}
+				if (tab[x][y+1].getMine()){
+					res++;
+				}
+			}		
+		}else if(y==tab[x].length){
 			if(x==tab.length){
 				if (tab[x-1][y].getMine()){
 				res++;
-			}
+				}
 				if (tab[x][y-1].getMine()){
 				res++;
 				}	
@@ -204,7 +213,7 @@ public class TableauDeCases {
 				}
 				if (tab[x-1][y-1].getMine()){
 					res++;
-					}	
+				}	
 				if (tab[x][y].getMine()){
 					res++;
 				}
@@ -216,12 +225,11 @@ public class TableauDeCases {
 				}	
 			}		
 			
-		}
-		if(x==tab.length){
+		}else if(x==tab.length){
 			if(y==0){
 				if (tab[x-1][y].getMine()){
 				res++;
-			}
+				}
 				if (tab[x-1][y+1].getMine()){
 				res++;
 				}	
@@ -245,8 +253,7 @@ public class TableauDeCases {
 					res++;
 				}
 			}		
-		}
-		else if(y==0){
+		}else if(y==0){
 			if (tab[x-1][y].getMine()){
 				res++;
 			}

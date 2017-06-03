@@ -8,8 +8,8 @@ public class Joueur {
 	public Joueur(int x, int y){
         this.x=x;
         this.y=y;
-        x=1;
-        y=1;
+        x=0;
+        y=0;
     }
     
     public int getX() {

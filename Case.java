@@ -13,7 +13,7 @@ public class Case {
 	
 	public Case(){
 		cachee=true;
-		int a = (int)(Math.random()*4);
+		int a = (int)(Math.random()*8);
 		nbMinesVoisines=0;
 		
 		if(a==0){
@@ -23,6 +23,7 @@ public class Case {
 		}else if(a==1){
 			mine=false;
 			mur=true;
+			cachee=false;
 		}else{
 			mine=false;
 			mur=false;
@@ -33,6 +34,10 @@ public class Case {
 	public boolean getCache(){
 		return cachee;
 	}
+	
+	public void setCachee(boolean f){
+		cachee= f;
+	}	
 	
 	public boolean getMine(){
 		return mine;
