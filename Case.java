@@ -63,7 +63,7 @@ public class Case {
 	}
 	
 	public void setCookie(boolean c){
-		mur= c;
+		cookie= c;
 	}
 			
 }
