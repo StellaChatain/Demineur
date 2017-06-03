@@ -45,11 +45,7 @@ public class Main {
 			//... 	while (!possible){
 			
 				
-				labyrinthe.deplacer(j1);//petit probleme, il faudrait réussir a atteindre le res de la methode
-				if (!labyrinthe.getGagner()){
-					System.out.println("Tu es tombé sur une mine! Perdu!");
-					finDeManche=true;
-				}else if(labyrinthe.getGagner()){// créer le cookie dans TableauDeCases
+				if(labyrinthe.getGagner()){// créer le cookie dans TableauDeCases
 					System.out.println("Bravo! Vous avez gagne!");
 					finDeManche=true;
 				}
