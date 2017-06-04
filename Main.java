@@ -44,7 +44,7 @@ public class Main {
 								if(a[i][j].getMur()){
 									s+="//";
 								} else {
-									s +="O:";
+									s +="_:";
 								}
 								s+=labyrinthe.calculNbMinesVoisines(a[i][j]);
 

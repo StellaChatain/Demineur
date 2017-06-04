@@ -43,7 +43,7 @@ public class TableauDeCases {
 					a.setMine(false);
 					a.setMur(false);
 				}
-				//interdit à une mine et un mur de se générer sur une case à coté de la première case	
+				//interdit à une mine et un mur de se générer sur une case en dessous de la première case	
 				if(i==1 && b==0){
 					a.setMine(false);
 					a.setMur(false);
