@@ -37,10 +37,10 @@ A savoir :
 	caractère aléatoire de la génération des mines / murs / cookie
 
 Affichage :
-o	« x » = Case sur laquelle se trouve le joueur
-o	« CK » = Cookie
-o	« : 0 » ou « : 1 » ou « : 3 »…etc. (donc chiffre sur la droite de la case) = nombre de mines 
+*	« x » = Case sur laquelle se trouve le joueur
+*	« CK » = Cookie
+*	« : 0 » ou « : 1 » ou « : 3 »…etc. (donc chiffre sur la droite de la case) = nombre de mines 
 	voisines
-o	« // » = mur
-o	«     » = case cachée
-o	« _ : » = Case sur laquelle on est déjà passée
+*	« // » = mur
+*	«     » = case cachée
+*	« _ : » = Case sur laquelle on est déjà passée
