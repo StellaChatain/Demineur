@@ -5,6 +5,7 @@ public class Joueur {
 	int x;
 	int y;
  
+	//Constructeur du joueur
 	public Joueur(int x, int y){
         this.x=x;
         this.y=y;
@@ -12,6 +13,7 @@ public class Joueur {
         y=0;
     }
     
+    //Getters
     public int getX() {
 		return x;
 	}
@@ -20,6 +22,7 @@ public class Joueur {
 		return y;
 	}
 	
+	//Setters
 	public void setX(int newX) {
 		x=newX;
 	}

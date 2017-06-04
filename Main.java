@@ -9,19 +9,21 @@ public class Main {
 		System.out.println("Bienvenue dans Cookie-Lanta, le demineur/labyrinthe");
 		System.out.println("Quelle taille de tableau de jeu voulez-vous?");
 		int b = sc.nextInt();
-		
-		//System.out.println("x :" + j1.getX() + " y :" + j1.getY());
 		boolean finDePartie = false;
+		
+		//Boucle qui fait tourner le programme tant que le joueur le veut
 		while(!finDePartie){
-			TableauDeCases labyrinthe = new TableauDeCases(b,b);
+		TableauDeCases labyrinthe = new TableauDeCases(b,b);
 		Joueur j1;
 		j1=labyrinthe.getJoueur();
 			boolean finDeManche = false;
+
+			//Boucle qui fait tourner le jeu tant que le joueur le veut
 			while(!finDeManche){
 				Case[][] a = labyrinthe.getTab();
 				String s = "";
-						//System.out.println("x :" + j1.getX() + " y :" + j1.getY());
 
+				//Affichage du tableau de case, des mines, des murs, du joueur et du nombre de mines voisines à chaque case
 				for (int i = 0 ; i < a.length ; i++){
 					
 					for (int k = 0 ; k < a[i].length ; k++){
@@ -33,15 +35,18 @@ public class Main {
 						if(a[i][j].getCache()){
 							s+="   ";
 						}else{
-							//System.out.println("x :" + i + " y :" + j);
 							 if(i==j1.getX() && j==j1.getY()){
 								s+="x:";
-								s+=labyrinthe.calculNbMinesVoisines(j1); // ...
+								s+=labyrinthe.calculNbMinesVoisines(j1);
 							}else if(a[i][j].getCookie()){
 								s+="CK ";
 							}else{
-								s+="0:";
-								s+=a[i][j].getNbMinesVoisines();
+								if(a[i][j].getMur()){
+									s+="//";
+								} else {
+									s +="O:";
+								}
+								s+=labyrinthe.calculNbMinesVoisines(a[i][j]);
 
 							}
 						}
@@ -55,22 +60,16 @@ public class Main {
 				Scanner p = new Scanner(System.in);
 				int n = p.nextInt();
 				finDeManche = labyrinthe.deplacer(n);
-			//....
-			//... int cas = 0;
-			//... if (cas=1)     prop=(6,2)
-			//...
-			//... boolean possible = false;
-			//... 	while (!possible){
-			
 				
+				//Finit la manche si le joueur a gagné ou perdu
 				if (labyrinthe.getPerdu()){
 					finDeManche=true;
-				}else if(labyrinthe.getGagner()){// créer le cookie dans TableauDeCases
+				}else if(labyrinthe.getGagner()){
 					finDeManche=true;
 				}
 			}
 			
-			System.out.println("Voulez-vous rejouer? Pour rejouer tapez o, pour terminer le jeu tapez n");
+			System.out.println("Voulez-vous rejouer? Pour rejouer tapez la lettre o, pour terminer le jeu tapez la lettre n");
 			String mes="";
 			while(mes.length() < 1){
 				mes = sc.nextLine();
