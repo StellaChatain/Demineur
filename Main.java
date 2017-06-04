@@ -5,7 +5,9 @@ public class Main {
 	public static void main (String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Quelle taille de tableau voulez-vous?");
+		System.out.println("Cookie-Lanta");
+		System.out.println("Bienvenue dans Cookie-Lanta, le demineur/labyrinthe");
+		System.out.println("Quelle taille de tableau de jeu voulez-vous?");
 		int b = sc.nextInt();
 		
 		//System.out.println("x :" + j1.getX() + " y :" + j1.getY());
@@ -36,9 +38,9 @@ public class Main {
 								s+="x:";
 								s+=labyrinthe.calculNbMinesVoisines(j1); // ...
 							}else if(a[i][j].getCookie()){
-								s+="CK";
+								s+="CK ";
 							}else{
-								s+="O:";
+								s+="0:";
 								s+=a[i][j].getNbMinesVoisines();
 
 							}
@@ -48,7 +50,7 @@ public class Main {
 				}		
 						
 				System.out.println(s);
-				String proposition = " 8 - en haut \n 4 - à gauche \n 6 - droite \n 5 -bas";
+				String proposition = " 8 - haut \n 4 - gauche \n 6 - droite \n 5 - bas";
 				System.out.println(proposition);
 				Scanner p = new Scanner(System.in);
 				int n = p.nextInt();

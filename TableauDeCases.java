@@ -1,4 +1,4 @@
-import java.util.Scanner;
+ import java.util.Scanner;
 
 public class TableauDeCases {
 	
@@ -13,8 +13,8 @@ public class TableauDeCases {
 	int y;
 	
 	public TableauDeCases(int lo, int la) {
-		int w = (int)(Math.random() * (lo-2)) + lo;
-		int z = (int)(Math.random() * (la-2)) + la;
+		int w = (int)(Math.random()*lo);
+		int z = (int)(Math.random()*la);
 		nbDeMines = 0;
 		tab = new Case[lo][la];
 		j= new Joueur(0,0);
@@ -24,6 +24,7 @@ public class TableauDeCases {
 				tab[i][b]= a;
 				if(i==w && b==z){
 					a.setCookie(true);
+					a.setCachee(false);
 				}
 				if(i==0 && b==0){
 					a.setMine(false);
@@ -36,6 +37,7 @@ public class TableauDeCases {
 		}
 		Case x = tab[0][0];
 		x.setCachee(false);
+		Case cookie = tab[w][z];
 	}
 	
 	public Case[][] getTab(){
@@ -64,7 +66,9 @@ public class TableauDeCases {
 			boolean mur= a.getMur();
 			boolean mine= a.getMine();
 			boolean cookie= a.getCookie();
-			if(mur){
+			if(j.getX()<=0){
+				a= tab[j.getX()][j.getY()];
+			}else if(mur){
 				System.out.println("Tu ne peux pas foncer dans un mur!");
 				a= tab[j.getX()][j.getY()];
 			}else if(mine){
@@ -88,7 +92,9 @@ public class TableauDeCases {
 			Case a= tab[j.getX()+1][j.getY()];
 				boolean mur= a.getMur();
 				boolean cookie= a.getCookie();
-				if(mur){
+				if(j.getX()==tab.length-1){
+					a= tab[j.getX()][j.getY()];
+				}else if(mur){
 					System.out.println("Tu ne peux pas foncer dans un mur!");
 					a= tab[j.getX()][j.getY()];
 				}else{
@@ -115,7 +121,9 @@ public class TableauDeCases {
 			Case a= tab[j.getX()][j.getY()-1];
 				boolean mur= a.getMur();
 				boolean cookie= a.getCookie();
-				if(mur){
+				if(j.getY()==0){
+					a= tab[j.getX()][j.getY()];
+				}else if(mur){
 					System.out.println("Tu ne peux pas foncer dans un mur!");
 					a= tab[j.getX()][j.getY()];
 				}else{
@@ -142,7 +150,9 @@ public class TableauDeCases {
 			Case a= tab[j.getX()][j.getY()+1];
 				boolean mur= a.getMur();
 				boolean cookie= a.getCookie();
-				if(mur){
+				if(j.getY()==tab[x].length-1){
+					a= tab[j.getX()][j.getY()];
+				}else if(mur){
 					System.out.println("Tu ne peux pas foncer dans un mur!");
 					a= tab[j.getX()][j.getY()];
 				}else{
@@ -258,7 +268,7 @@ public class TableauDeCases {
 				}
 			}else{
 				if (tab[x][y-1].getMine()){
-				res++;
+					res++;
 				}
 				if (tab[x-1][y-1].getMine()){
 					res++;
@@ -273,17 +283,6 @@ public class TableauDeCases {
 					res++;
 				}
 			}		
-		}else if(y==0){
-			if (tab[x-1][y].getMine()){
-				res++;
-			}
-			if (tab[x-1][y+1].getMine()){
-				res++;
-				}	
-			if (tab[x][y+1].getMine()){
-				res++;
-			}
-			
 		}else{
 			for(int i=x-1; i<=x+1; i++){
 				for(int b=y-1; b<=y+1; b++){
@@ -292,9 +291,9 @@ public class TableauDeCases {
 					}	
 				}	
 			}
-			if(tab[x][y].getMine()){
+			/*if(tab[x][y].getMine()){
 				res-= 1;
-			}					
+			}*/					
 			
 		}
 		return res;
